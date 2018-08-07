@@ -26,9 +26,11 @@
 		78ABC5112119C45D009D44A4 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABC5102119C45D009D44A4 /* API.swift */; };
 		78ABC5132119C487009D44A4 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABC5122119C487009D44A4 /* UserAPI.swift */; };
 		78ABC5152119C647009D44A4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABC5142119C647009D44A4 /* User.swift */; };
+		EDADB50A1BE60846E6B38764 /* Pods_The_Genius.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC04E29C55E8C7AD516A2BA /* Pods_The_Genius.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06DA735D7A9F99F6434C2420 /* Pods-The Genius.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The Genius.release.xcconfig"; path = "Pods/Target Support Files/Pods-The Genius/Pods-The Genius.release.xcconfig"; sourceTree = "<group>"; };
 		2D2D16F6210C93F9009DACA2 /* The Genius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Genius.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D2D16F9210C93F9009DACA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D2D1703210C93FA009DACA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -50,6 +52,8 @@
 		78ABC5102119C45D009D44A4 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		78ABC5122119C487009D44A4 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		78ABC5142119C647009D44A4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CCC04E29C55E8C7AD516A2BA /* Pods_The_Genius.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_The_Genius.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1C63EA0A4FD1361C6E4B977 /* Pods-The Genius.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The Genius.debug.xcconfig"; path = "Pods/Target Support Files/Pods-The Genius/Pods-The Genius.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,17 +61,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDADB50A1BE60846E6B38764 /* Pods_The_Genius.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		087E71A801C5109E4EAF3923 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CCC04E29C55E8C7AD516A2BA /* Pods_The_Genius.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		248F803421CE7D15D119386B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F1C63EA0A4FD1361C6E4B977 /* Pods-The Genius.debug.xcconfig */,
+				06DA735D7A9F99F6434C2420 /* Pods-The Genius.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		2D2D16ED210C93F9009DACA2 = {
 			isa = PBXGroup;
 			children = (
 				2D2D16F8210C93F9009DACA2 /* The Genius */,
 				2D2D16F7210C93F9009DACA2 /* Products */,
+				248F803421CE7D15D119386B /* Pods */,
+				087E71A801C5109E4EAF3923 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -185,9 +209,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D2D1708210C93FA009DACA2 /* Build configuration list for PBXNativeTarget "The Genius" */;
 			buildPhases = (
+				5DE8D42229E3A41F7AD2832A /* [CP] Check Pods Manifest.lock */,
 				2D2D16F2210C93F9009DACA2 /* Sources */,
 				2D2D16F3210C93F9009DACA2 /* Frameworks */,
 				2D2D16F4210C93F9009DACA2 /* Resources */,
+				A00CB81BFB771EDC5D11CCFA /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -244,6 +270,47 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5DE8D42229E3A41F7AD2832A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-The Genius-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A00CB81BFB771EDC5D11CCFA /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-The Genius/Pods-The Genius-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-The Genius/Pods-The Genius-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2D2D16F2210C93F9009DACA2 /* Sources */ = {
@@ -398,16 +465,14 @@
 		};
 		2D2D1709210C93FA009DACA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F1C63EA0A4FD1361C6E4B977 /* Pods-The Genius.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YBUATYW853;
+				DEVELOPMENT_TEAM = A358VZ5QEA;
 				INFOPLIST_FILE = "The Genius/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ml.votoserver.The-Genius";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.changhyeon.The-Genius";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -416,16 +481,14 @@
 		};
 		2D2D170A210C93FA009DACA2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06DA735D7A9F99F6434C2420 /* Pods-The Genius.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = YBUATYW853;
+				DEVELOPMENT_TEAM = A358VZ5QEA;
 				INFOPLIST_FILE = "The Genius/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "ml.votoserver.The-Genius";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.changhyeon.The-Genius";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

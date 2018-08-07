@@ -11,5 +11,4 @@ import Foundation
 
 struct API {
     static var User = UserAPI()
-    static var Post = PostAPI()
 }

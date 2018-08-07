@@ -7,47 +7,24 @@
 //
 
 import Foundation
+import Alamofire
+import SwiftyJSON
 
 class UserAPI {
-    
-    var REF_USERS = ("user")
-    
-    var CURRENT_USER: FIRUser? {
-        if let currentUser = FIRAuth.auth()?.currentUser {
-            return currentUser
-        }
-        return nil
-    }
-    
-    var CURRENT_USER_ID = FIRAuth.auth()?.currentUser?.uid
-    
-    var REF_CURRENT_USER: FIRDatabaseReference? {
-        guard let currentUser = FIRAuth.auth()?.currentUser else {
-            return nil
-        }
-        return REF_USERS.child(currentUser.uid)
-    }
-    
-    func observeCurrentUser(completion: @escaping (User) -> Void) {
-        guard let currentUser = FIRAuth.auth()?.currentUser else {
-            return
-        }
-        
-        REF_USERS.child(currentUser.uid).observeSingleEvent(of: .value, with: { snapshot in
-            if let postDictionary = snapshot.value as? [String: Any] {
-                let user = User.transformUser(postDictionary: postDictionary)
-                completion(user)
-            }
-        })
-    }
-    
-    func observeUser(withID uid:String, completion: @escaping (User) -> Void) {
-        REF_USERS.child(uid).observeSingleEvent(of: .value, with: { snapshot in
-            if let postDictionary = snapshot.value as? [String: Any] {
-                let user = User.transformUser(postDictionary: postDictionary)
-                completion(user)
-            }
-        })
+    func fetchUsers(completion:@escaping(Any?) -> Void) {
+        Alamofire.request("http://aws.soylatte.kr:5000/admin/user/list")
+            .responseJSON(completionHandler: { (response) in
+                guard response.result.isSuccess,
+                    let value = response.result.value else {
+                        print("Error: \(String(describing: response.result.error))")
+                        completion(nil)
+                        return
+                }
+                //guard에서 오류를 걸러주고
+                let tags = JSON(value).array?.map { json in
+                    print(json["user_name"].stringValue)
+                }
+            })
     }
     
 }

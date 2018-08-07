@@ -14,16 +14,15 @@ struct User {
     var setting: Bool
     var die: Bool
     var now_room: String
-    var game_data:GameData
 }
-
-class GameData {
-    var name: String
-    var pay:String
-    var pay_number:Int
-    var department:String
-    var win_condition: Array<Any>
-    var lose_condition: String
-    var uniqueness: String
-    
-}
+//
+//class GameData {
+//    var name: String
+//    var pay:String
+//    var pay_number:Int
+//    var department:String
+//    var win_condition: Array<Any>
+//    var lose_condition: String
+//    var uniqueness: String
+//    
+//}
