@@ -33,11 +33,11 @@ class CardCheckViewController: UIViewController {
         self.cardImgview = UIFunc.imgView(x: cardWidth * 0.2, y: cardHeight * 0.05, width: cardWidth * 0.6, height: cardHeight * 0.5, img: #imageLiteral(resourceName: "ㅇㄹㅇㄹㅇㄹ"))
         self.cardLabelView = UIFunc.view(x: cardWidth * 0.1, y: cardHeight * 0.6, width: cardWidth * 0.8, height: cardHeight * 0.35)
         let (cardLabelWidth, cardLabelHeight) = UIFunc.getPos(view: cardLabelView)
-        self.cardNameLbl = UIFunc.lbl(x: 0, y: 0, width: cardLabelWidth, height: cardLabelHeight * 0.2, text: "박부장")
+        self.cardNameLbl = UIFunc.lbl(x: 0, y: 0, width: cardLabelWidth, height: cardLabelHeight * 0.2, text: "이름")
         self.cardIncomeLbl = UIFunc.lbl(x: 0, y: cardLabelHeight * 0.5, width: cardLabelWidth * 0.5, height: cardLabelHeight * 0.1, text: "연봉: ")
-        self.cardWinningConditionLbl = UIFunc.lbl(x: cardLabelWidth * 0.5, y: cardLabelHeight * 0.4, width: cardLabelWidth * 0.5, height: cardLabelHeight * 0.1, text: "승리조건: ")
-        self.cardLosingConditionLbl = UIFunc.lbl(x: cardLabelWidth * 0.5, y: cardLabelHeight * 0.55, width: cardLabelWidth * 0.5, height: cardLabelHeight * 0.1, text: "패배조건: ")
-        self.cardDetailLbl = UIFunc.lbl(x: 0, y: cardLabelHeight * 0.7, width: cardLabelWidth, height: cardLabelHeight * 0.15, text: "특이사항: ")
+        self.cardWinningConditionLbl = UIFunc.lbl(x: cardLabelWidth * 0.4, y: cardLabelHeight * 0.25, width: cardLabelWidth * 0.6, height: cardLabelHeight * 0.35, text: "승리조건: ")
+        self.cardLosingConditionLbl = UIFunc.lbl(x: cardLabelWidth * 0.4, y: cardLabelHeight * 0.6, width: cardLabelWidth * 0.6, height: cardLabelHeight * 0.15, text: "패배조건: ")
+        self.cardDetailLbl = UIFunc.lbl(x: 0, y: cardLabelHeight * 0.7, width: cardLabelWidth, height: cardLabelHeight * 0.4, text: "특이사항: ")
         self.confirmBtn = UIFunc.btn(x: width * 0.1, y: height * 0.8, width: width * 0.8, height: height * 0.075, title: "확인")
         //뷰 세부설정
         self.cardView.backgroundColor = UIColor(rgb: 0xd8c38d)
@@ -45,22 +45,32 @@ class CardCheckViewController: UIViewController {
         self.cardNameLbl.font = UIFont(name: "SeoulNamsanB", size: 30)
         self.cardNameLbl.textColor = UIColor(rgb: 0x444444)
         self.cardNameLbl.textAlignment = .center
+        
         self.cardIncomeLbl.font = UIFont(name: "SeoulNamsanB", size: 15)
         self.cardIncomeLbl.textColor = UIColor(rgb: 0x444444)
         
         self.cardWinningConditionLbl.adjustsFontSizeToFitWidth = true
         self.cardWinningConditionLbl.minimumScaleFactor = CGFloat(0.5)
-        self.cardWinningConditionLbl.font = UIFont(name: "SeoulNamsanB", size: 15)
+        self.cardWinningConditionLbl.font = UIFont(name: "SeoulNamsanB", size: 14)
         self.cardWinningConditionLbl.textColor = UIColor(rgb: 0x444444)
+        self.cardWinningConditionLbl.lineBreakMode = .byWordWrapping
+        self.cardWinningConditionLbl.numberOfLines = 0
+        
         
         self.cardLosingConditionLbl.adjustsFontSizeToFitWidth = true
         self.cardLosingConditionLbl.minimumScaleFactor = CGFloat(0.5)
-        self.cardLosingConditionLbl.font = UIFont(name: "SeoulNamsanB", size: 15)
+        self.cardLosingConditionLbl.font = UIFont(name: "SeoulNamsanB", size: 14)
         self.cardLosingConditionLbl.textColor = UIColor(rgb: 0x444444)
+        self.cardLosingConditionLbl.lineBreakMode = .byWordWrapping
+        self.cardLosingConditionLbl.numberOfLines = 0
         
         
         self.cardDetailLbl.font = UIFont(name: "SeoulNamsanB", size: 15)
         self.cardDetailLbl.textColor = UIColor(rgb: 0x444444)
+        self.cardDetailLbl.lineBreakMode = .byWordWrapping
+        self.cardDetailLbl.numberOfLines = 0
+        self.cardDetailLbl.adjustsFontSizeToFitWidth = true
+        self.cardDetailLbl.minimumScaleFactor = 0.5
         self.confirmBtn.backgroundColor = UIColor(rgb: 0x8e8e8e)
         self.confirmBtn.layer.cornerRadius = self.confirmBtn.frame.height * 0.5
         self.confirmBtn.titleLabel?.font = UIFont(name: "NanumSquareRoundL", size: 30)
