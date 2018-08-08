@@ -32,7 +32,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setup()
         
-        API.User.fetch(withToken: "laDNcaq6ANV3NGkt0GrHfG6yP9xRqZmb") { (response,status) in
+        API.User.fetch(withToken: "wWewGdJUCHQiDyHbYmDtdCkb7bjQhmAu") { (response,status) in
             guard let user = response,status != 401 else {
                 print("Can't find user!")
                 return

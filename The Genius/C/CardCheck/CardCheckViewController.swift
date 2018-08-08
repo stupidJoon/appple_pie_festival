@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CardCheckViewController: UIViewController {
     var mainView: UIView!
@@ -87,13 +88,16 @@ class CardCheckViewController: UIViewController {
         
         cardNameLbl.text = API.currentUser?.game_data.name
         
-        cardWinningConditionLbl.append(API.currentUser?.game_data.win_condition.joined(separator: ","))
+        cardWinningConditionLbl.append(API.currentUser?.game_data.win_condition.joined(separator: "&"))
         cardLosingConditionLbl.append(API.currentUser?.game_data.lose_condition)
-        cardDetailLbl.append(API.currentUser?.game_data.uniqueness.joined(separator: ","))
+        
+        cardDetailLbl.append(API.currentUser?.game_data.uniqueness.joined(separator: "&"))
+        
         cardIncomeLbl.append(API.currentUser?.game_data.pay)
         
-        cardImgview.
-        
+        if let profileLink = API.currentUser?.game_data.profile {
+            cardImgview.sd_setImage(with: URL(string: "\(API.base_url)\(profileLink)"))
+        }
         
     }
 
