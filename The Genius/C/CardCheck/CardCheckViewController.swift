@@ -46,10 +46,16 @@ class CardCheckViewController: UIViewController {
         self.cardNameLbl.textAlignment = .center
         self.cardIncomeLbl.font = UIFont(name: "SeoulNamsanB", size: 15)
         self.cardIncomeLbl.textColor = UIColor(rgb: 0x444444)
+        
+        self.cardWinningConditionLbl.minimumScaleFactor = CGFloat(0.5)
         self.cardWinningConditionLbl.font = UIFont(name: "SeoulNamsanB", size: 15)
         self.cardWinningConditionLbl.textColor = UIColor(rgb: 0x444444)
+        
+        self.cardLosingConditionLbl.minimumScaleFactor = CGFloat(0.5)
         self.cardLosingConditionLbl.font = UIFont(name: "SeoulNamsanB", size: 15)
         self.cardLosingConditionLbl.textColor = UIColor(rgb: 0x444444)
+        
+        
         self.cardDetailLbl.font = UIFont(name: "SeoulNamsanB", size: 15)
         self.cardDetailLbl.textColor = UIColor(rgb: 0x444444)
         self.confirmBtn.backgroundColor = UIColor(rgb: 0x8e8e8e)
@@ -68,6 +74,7 @@ class CardCheckViewController: UIViewController {
         self.cardLabelView.addSubview(cardLosingConditionLbl)
         self.cardLabelView.addSubview(cardDetailLbl)
     }
+    
     func setup() {
         setupUI()
     }
@@ -75,6 +82,15 @@ class CardCheckViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        
+        cardNameLbl.text = API.currentUser?.game_data.name
+        
+        cardWinningConditionLbl.append(API.currentUser?.game_data.win_condition.joined(separator: ","))
+        cardLosingConditionLbl.append(API.currentUser?.game_data.lose_condition)
+        cardDetailLbl.append(API.currentUser?.game_data.uniqueness.joined(separator: ","))
+        cardIncomeLbl.append(API.currentUser?.game_data.pay)
+        
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -83,14 +99,5 @@ class CardCheckViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

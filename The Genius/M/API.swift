@@ -10,5 +10,7 @@ import Foundation
 
 
 struct API {
+    static var base_url = "http://aws.soylatte.kr:5000"
     static var User = UserAPI()
+    static var currentUser:User?
 }

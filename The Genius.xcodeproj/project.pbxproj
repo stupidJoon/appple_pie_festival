@@ -23,6 +23,7 @@
 		2DB7238C21172F7D006A1433 /* SeoulNamsanB.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2DB7238B21172F7D006A1433 /* SeoulNamsanB.otf */; };
 		2DB7238F21174ADE006A1433 /* EnterDepartmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB7238E21174ADE006A1433 /* EnterDepartmentViewController.swift */; };
 		2DB723912117E308006A1433 /* DepartmentCountCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DB723902117E308006A1433 /* DepartmentCountCollectionViewCell.swift */; };
+		7810F320211A118E00320F96 /* UILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7810F31F211A118E00320F96 /* UILabel.swift */; };
 		78ABC5112119C45D009D44A4 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABC5102119C45D009D44A4 /* API.swift */; };
 		78ABC5132119C487009D44A4 /* UserAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABC5122119C487009D44A4 /* UserAPI.swift */; };
 		78ABC5152119C647009D44A4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABC5142119C647009D44A4 /* User.swift */; };
@@ -49,6 +50,7 @@
 		2DB7238B21172F7D006A1433 /* SeoulNamsanB.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SeoulNamsanB.otf; sourceTree = "<group>"; };
 		2DB7238E21174ADE006A1433 /* EnterDepartmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterDepartmentViewController.swift; sourceTree = "<group>"; };
 		2DB723902117E308006A1433 /* DepartmentCountCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentCountCollectionViewCell.swift; sourceTree = "<group>"; };
+		7810F31F211A118E00320F96 /* UILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.swift; sourceTree = "<group>"; };
 		78ABC5102119C45D009D44A4 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		78ABC5122119C487009D44A4 /* UserAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPI.swift; sourceTree = "<group>"; };
 		78ABC5142119C647009D44A4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			children = (
 				2D903E662111682900A6366F /* UIColorExtension.swift */,
 				2D308A182112F2DB0037C972 /* UIViewExtension.swift */,
+				7810F31F211A118E00320F96 /* UILabel.swift */,
 				78ABC5102119C45D009D44A4 /* API.swift */,
 				78ABC5122119C487009D44A4 /* UserAPI.swift */,
 				78ABC5142119C647009D44A4 /* User.swift */,
@@ -323,6 +326,7 @@
 				2D308A192112F2DB0037C972 /* UIViewExtension.swift in Sources */,
 				2DB723822115CA89006A1433 /* MoveDepartmentViewController.swift in Sources */,
 				2D2D16FA210C93F9009DACA2 /* AppDelegate.swift in Sources */,
+				7810F320211A118E00320F96 /* UILabel.swift in Sources */,
 				2D308A202113150D0037C972 /* WaitingViewController.swift in Sources */,
 				2D97D3CD211006A5000E58EB /* UIFunc.swift in Sources */,
 				78ABC5152119C647009D44A4 /* User.swift in Sources */,
@@ -471,7 +475,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A358VZ5QEA;
 				INFOPLIST_FILE = "The Genius/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.changhyeon.The-Genius";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -487,7 +494,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A358VZ5QEA;
 				INFOPLIST_FILE = "The Genius/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.changhyeon.The-Genius";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

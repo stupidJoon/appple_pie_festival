@@ -11,20 +11,23 @@ import Alamofire
 import SwiftyJSON
 
 class UserAPI {
-    func fetchUsers(completion:@escaping(Any?) -> Void) {
-        Alamofire.request("http://aws.soylatte.kr:5000/admin/user/list")
+    func fetch(withToken:String = "5vEim7ehKyW2LvW8hJuCGDwmOcSSu4tZ",completion:@escaping(User?,Int) -> Void) {
+        Alamofire.request("\(API.base_url)/game/data/\(withToken)")
             .responseJSON(completionHandler: { (response) in
-                guard response.result.isSuccess,
-                    let value = response.result.value else {
-                        print("Error: \(String(describing: response.result.error))")
-                        completion(nil)
-                        return
-                }
-                //guard에서 오류를 걸러주고
-                let tags = JSON(value).array?.map { json in
-                    print(json["user_name"].stringValue)
+                
+                //1. JSON 변환
+                if let value = response.result.value,response.result.isSuccess {
+                    let json = JSON(value)
+                    
+                    let status:Int = json["status"].intValue
+                    
+                    let user:User? = User.transformUser(temp: json)
+                    completion(user,status)
                 }
             })
     }
     
+    func set(withUser: User) {
+        API.currentUser = withUser
+    }
 }
