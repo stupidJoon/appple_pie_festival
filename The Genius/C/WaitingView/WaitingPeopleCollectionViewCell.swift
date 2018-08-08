@@ -11,6 +11,7 @@ import UIKit
 class WaitingPeopleCollectionViewCell: UICollectionViewCell {
     var mainView: UIView!
     var imgView: UIImageView!
+    var textLbl: UILabel!
     
     func setupUI() {
         //mainView 설정
@@ -24,9 +25,15 @@ class WaitingPeopleCollectionViewCell: UICollectionViewCell {
         self.mainView.backgroundColor = UIColor.white
         self.mainView.layer.cornerRadius = 5.0
         self.imgView.contentMode = .scaleAspectFit
+        
+        self.textLbl = UIFunc.lbl(x: width * 0.1, y: height * 0.5, width: width * 0.8, height: height * 0.6, text: "test")
+        self.textLbl.textAlignment = .center
+        self.textLbl.font = UIFont(name: "NanumSquareRoundL", size: 15)
+        
         //뷰 add
         self.addSubview(mainView)
         self.mainView.addSubview(imgView)
+        self.mainView.addSubview(textLbl)
     }
     func setup() {
         setupUI()

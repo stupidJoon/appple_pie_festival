@@ -32,18 +32,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         setup()
         
-        API.User.fetch(withToken: "wWewGdJUCHQiDyHbYmDtdCkb7bjQhmAu") { (response,status) in
-            guard let user = response,status != 401 else {
-                print("Can't find user!")
-                return
-            }
-            API.User.set(withUser: user)
-            let vc = CardCheckViewController()
-            self.present(vc, animated: true, completion: {
-                return
-            })
-        }
-        
+        self.goto(VC: EmployCardViewController())
     }
     
     override func didReceiveMemoryWarning() {

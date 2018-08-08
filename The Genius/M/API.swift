@@ -7,10 +7,20 @@
 //
 
 import Foundation
-
+import UIKit
 
 struct API {
-    static var base_url = "http://aws.soylatte.kr:5000"
+    static var base_url = "http://aws.soylatte.kr:3000"
     static var User = UserAPI()
     static var currentUser:User?
+    
+    
+}
+
+extension UIViewController {
+    func goto(VC:UIViewController) {
+        self.present(VC, animated: true, completion: {
+            return
+        })
+    }
 }

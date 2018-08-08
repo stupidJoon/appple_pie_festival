@@ -15,7 +15,11 @@ class WaitingViewController: UIViewController {
     var waitingPeopleView: UIView!
     var waitingPeopleCollection: UICollectionView!
     
+    var users:[LightUser] = []
+    
+    
     func setupUI() {
+        
         //mainView 설정
         self.mainView = UIFunc.view(x: 0, y: UIApplication.shared.statusBarFrame.height + (self.navigationController?.navigationBar.frame.height ?? 0), width: self.view.frame.width, height: self.view.frame.height - (UIApplication.shared.statusBarFrame.height + (self.navigationController?.navigationBar.frame.height ?? 0)))
         //뷰 width, height 변수 지정
@@ -45,6 +49,19 @@ class WaitingViewController: UIViewController {
     }
     func setup() {
         setupUI()
+        
+        API.User.fetch_userlist(withToken: (API.currentUser?.user_token)!, completion: { (response,status) in
+            guard status != 401 else {
+                print("Error!")
+                return
+            }
+            self.setUsers(temp: response)
+        })
+    }
+    
+    func setUsers(temp:[LightUser]) {
+        users = temp
+        waitingPeopleCollection.reloadData()
     }
 
     override func viewDidLoad() {
@@ -57,26 +74,18 @@ class WaitingViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension WaitingViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return users.count
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = self.waitingPeopleCollection.dequeueReusableCell(withReuseIdentifier: "waitingCell", for: indexPath as IndexPath) as! WaitingPeopleCollectionViewCell
         cell.mainView.backgroundColor = UIColor.white
         cell.mainView.dropShadow(color: UIColor.black, opacity: 0.3, offSet: CGSize(width: 0, height: 0), radius: 2, scale: true)
+        cell.textLbl.text = users[indexPath.row].user_name
+        cell.imgView.sd_setImage(with: URL(string: "\(API.base_url)\(users[indexPath.row].user_profile)"))
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

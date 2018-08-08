@@ -76,6 +76,7 @@ class CardCheckViewController: UIViewController {
         self.confirmBtn.titleLabel?.font = UIFont(name: "NanumSquareRoundL", size: 30)
         self.confirmBtn.setTitleColor(UIColor(rgb: 0x000000), for: .normal)
         self.confirmBtn.dropShadow(color: UIColor(rgb: 0x000000), opacity: 0.3, offSet: CGSize(width: 1, height: 1), radius: self.confirmBtn.frame.height * 0.5, scale: true)
+        self.confirmBtn.addTarget(self, action: #selector(confirmBtnPressed(sender:)), for: .touchUpInside)
         //뷰 add
         self.mainView.addSubview(cardView)
         self.mainView.addSubview(confirmBtn)
@@ -90,6 +91,10 @@ class CardCheckViewController: UIViewController {
     
     func setup() {
         setupUI()
+    }
+    
+    @objc func confirmBtnPressed(sender:UIButton!) {
+        goto(VC: WaitingViewController())
     }
     
     override func viewDidLoad() {
