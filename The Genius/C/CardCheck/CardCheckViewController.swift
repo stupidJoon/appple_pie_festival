@@ -36,7 +36,7 @@ class CardCheckViewController: UIViewController {
         self.cardIncomeLbl = UIFunc.lbl(x: 0, y: cardLabelHeight * 0.5, width: cardLabelWidth * 0.5, height: cardLabelHeight * 0.1, text: "연봉: ")
         self.cardWinningConditionLbl = UIFunc.lbl(x: cardLabelWidth * 0.5, y: cardLabelHeight * 0.4, width: cardLabelWidth * 0.5, height: cardLabelHeight * 0.1, text: "승리조건: ")
         self.cardLosingConditionLbl = UIFunc.lbl(x: cardLabelWidth * 0.5, y: cardLabelHeight * 0.55, width: cardLabelWidth * 0.5, height: cardLabelHeight * 0.1, text: "패배조건: ")
-        self.cardDetailLbl = UIFunc.lbl(x: 0, y: cardLabelHeight * 0.7, width: cardLabelWidth, height: cardLabelHeight * 0.15, text: "특의사항: ")
+        self.cardDetailLbl = UIFunc.lbl(x: 0, y: cardLabelHeight * 0.7, width: cardLabelWidth, height: cardLabelHeight * 0.15, text: "특이사항: ")
         self.confirmBtn = UIFunc.btn(x: width * 0.1, y: height * 0.8, width: width * 0.8, height: height * 0.075, title: "확인")
         //뷰 세부설정
         self.cardView.backgroundColor = UIColor(rgb: 0xd8c38d)
@@ -47,10 +47,12 @@ class CardCheckViewController: UIViewController {
         self.cardIncomeLbl.font = UIFont(name: "SeoulNamsanB", size: 15)
         self.cardIncomeLbl.textColor = UIColor(rgb: 0x444444)
         
+        self.cardWinningConditionLbl.adjustsFontSizeToFitWidth = true
         self.cardWinningConditionLbl.minimumScaleFactor = CGFloat(0.5)
         self.cardWinningConditionLbl.font = UIFont(name: "SeoulNamsanB", size: 15)
         self.cardWinningConditionLbl.textColor = UIColor(rgb: 0x444444)
         
+        self.cardLosingConditionLbl.adjustsFontSizeToFitWidth = true
         self.cardLosingConditionLbl.minimumScaleFactor = CGFloat(0.5)
         self.cardLosingConditionLbl.font = UIFont(name: "SeoulNamsanB", size: 15)
         self.cardLosingConditionLbl.textColor = UIColor(rgb: 0x444444)
@@ -89,6 +91,8 @@ class CardCheckViewController: UIViewController {
         cardLosingConditionLbl.append(API.currentUser?.game_data.lose_condition)
         cardDetailLbl.append(API.currentUser?.game_data.uniqueness.joined(separator: ","))
         cardIncomeLbl.append(API.currentUser?.game_data.pay)
+        
+        cardImgview.
         
         
     }
