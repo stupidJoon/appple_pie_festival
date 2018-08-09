@@ -18,6 +18,12 @@ class UIFunc {
         view.frame = CGRect(x: x, y: y, width: width, height: height)
         return view
     }
+    static func scroll(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, contentSize: CGSize) -> UIScrollView {
+        let view = UIScrollView()
+        view.frame = CGRect(x: x, y: y, width: width, height: height)
+        view.contentSize = contentSize
+        return view
+    }
     static func lbl(x: CGFloat, y: CGFloat, width: CGFloat, height: CGFloat, text: String) -> UILabel {
         let view = UILabel()
         view.frame = CGRect(x: x, y: y, width: width, height: height)
