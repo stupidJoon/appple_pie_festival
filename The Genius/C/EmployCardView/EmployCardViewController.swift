@@ -9,7 +9,7 @@
 import UIKit
 
 class EmployCardViewController: UIViewController {
-    var mainView: UIView!
+    var mainView: UIScrollView!
     var cardView: UIView!
     var employLbl: UILabel!
     var employImgview: UIImageView!
@@ -17,10 +17,9 @@ class EmployCardViewController: UIViewController {
     var employNameTxtfieldLine: UIView!
     var nextBtn: UIButton!
     
-    
     func setupUI() {
         //mainView 설정
-        self.mainView = UIFunc.view(x: 0, y: UIApplication.shared.statusBarFrame.height + (self.navigationController?.navigationBar.frame.height ?? 0), width: self.view.frame.width, height: self.view.frame.height - (UIApplication.shared.statusBarFrame.height + (self.navigationController?.navigationBar.frame.height ?? 0)))
+        self.mainView = UIFunc.scroll(x: 0, y: UIApplication.shared.statusBarFrame.height + (navigationController?.navigationBar.frame.height ?? 0), width: view.frame.width, height: view.frame.height - (UIApplication.shared.statusBarFrame.height + (self.navigationController?.navigationBar.frame.height ?? 0)), contentSize: CGSize(width: view.frame.width, height: view.frame.height - (UIApplication.shared.statusBarFrame.height + (self.navigationController?.navigationBar.frame.height ?? 0))))
         //뷰 width, height 변수 지정
         let (width, height) = UIFunc.getPos(view: mainView)
         //뷰 생성및 위치설정
@@ -58,6 +57,8 @@ class EmployCardViewController: UIViewController {
     }
     func setup() {
         setupUI()
+        self.registerForKeyboardNotifications()
+        self.tapHideKeyboard()
     }
 
     override func viewDidLoad() {
@@ -66,7 +67,7 @@ class EmployCardViewController: UIViewController {
     }
     
     @objc func login(_ sender: UIButton) {
-        print(self.employNameTxtfield2.text)
+        print(self.employNameTxtfield2.text ?? "")
         API.User.fetch(withToken: self.employNameTxtfield2.text ?? "") { (response,status) in
             guard let user = response,status != 401 else {
                 print("Can't find user!")
@@ -77,5 +78,42 @@ class EmployCardViewController: UIViewController {
             self.goto(VC: CardCheckViewController())
         }
     }
+}
 
+extension EmployCardViewController {
+    //키보드 올라왔을때 다른곳 누르면 키보드 내려가는 동작
+    func tapHideKeyboard() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.mainView.addGestureRecognizer(tap)
+    }
+    @objc func dismissKeyboard() {
+        self.mainView.endEditing(true)
+    }
+    
+    //키보드 올라왔을때 스크롤뷰 올리는것 or 반대
+    func registerForKeyboardNotifications() {
+        // 옵저버 등록
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    func unregisterForKeyboardNotifications() {
+        // 옵저버 등록 해제
+        NotificationCenter.default.removeObserver(self, name:NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name:NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    @objc func keyboardWillShow(notification: NSNotification) {
+        //키보드 올라갔을때
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardSize.height
+            self.mainView.contentSize = CGSize(width: mainView.frame.width, height: mainView.frame.height + keyboardHeight)
+            self.mainView.setContentOffset(CGPoint(x: mainView.frame.origin.x, y: mainView.frame.origin.y + keyboardHeight), animated: false)
+        }
+    }
+    @objc func keyboardWillHide(notification: NSNotification) {
+        //키보드 내려갔을때
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            let keyboardHeight = keyboardSize.height
+            self.mainView.contentSize = CGSize(width: mainView.frame.width, height: mainView.frame.height - keyboardHeight)
+        }
+    }
 }

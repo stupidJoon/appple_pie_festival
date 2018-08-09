@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D28CE65211C4D62007567AC /* KeyboardFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D28CE64211C4D62007567AC /* KeyboardFunc.swift */; };
 		2D2D16FA210C93F9009DACA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D2D16F9210C93F9009DACA2 /* AppDelegate.swift */; };
 		2D2D1704210C93FA009DACA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2D2D1702210C93FA009DACA2 /* LaunchScreen.storyboard */; };
 		2D308A192112F2DB0037C972 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D308A182112F2DB0037C972 /* UIViewExtension.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		06DA735D7A9F99F6434C2420 /* Pods-The Genius.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-The Genius.release.xcconfig"; path = "Pods/Target Support Files/Pods-The Genius/Pods-The Genius.release.xcconfig"; sourceTree = "<group>"; };
+		2D28CE64211C4D62007567AC /* KeyboardFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardFunc.swift; sourceTree = "<group>"; };
 		2D2D16F6210C93F9009DACA2 /* The Genius.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The Genius.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D2D16F9210C93F9009DACA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D2D1703210C93FA009DACA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				78ABC5122119C487009D44A4 /* UserAPI.swift */,
 				78ABC5142119C647009D44A4 /* User.swift */,
 				78E9A843211B40DF006AB441 /* LightUser.swift */,
+				2D28CE64211C4D62007567AC /* KeyboardFunc.swift */,
 			);
 			path = M;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 			files = (
 				2D308A2221131C550037C972 /* MainViewController.swift in Sources */,
 				2DB7238F21174ADE006A1433 /* EnterDepartmentViewController.swift in Sources */,
+				2D28CE65211C4D62007567AC /* KeyboardFunc.swift in Sources */,
 				2DB7238A2116E65C006A1433 /* CardCheckViewController.swift in Sources */,
 				2D308A192112F2DB0037C972 /* UIViewExtension.swift in Sources */,
 				2DB723822115CA89006A1433 /* MoveDepartmentViewController.swift in Sources */,
