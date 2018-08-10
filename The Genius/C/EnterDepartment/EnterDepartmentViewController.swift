@@ -24,14 +24,35 @@ class EnterDepartmentViewController: UIViewController {
     var memberViewFifth: UIView!
     var memberImgviewFifth: UIImageView!
     
+    var usersinroom:[LightUser] = []
+    
+    var waitingPeopleView: UIView!
+    var waitingPeopleCollection: UICollectionView!
+    
+    var users:[LightUser] {
+        return API.otherUsers
+    }
     
     func setupUI() {
         //mainView 설정
         self.mainView = UIFunc.view(x: 0, y: UIApplication.shared.statusBarFrame.height + (self.navigationController?.navigationBar.frame.height ?? 0), width: self.view.frame.width, height: self.view.frame.height - (UIApplication.shared.statusBarFrame.height + (self.navigationController?.navigationBar.frame.height ?? 0)))
-        self.view.backgroundColor = UIColor(rgb: 0xffefcc)
+        
+        
+        
+        self.waitingPeopleView.backgroundColor = UIColor(rgb: 0xffffff)
+        self.waitingPeopleView.dropShadow(color: UIColor.black, opacity: 0.01, offSet: CGSize(width: 0, height: -2), radius: 1, scale: true)
+        
+        self.view.backgroundColor = UIColor.getColor(with: API.currentUser?.now_room ?? "인사")
         self.view.addSubview(mainView)
         //뷰 width, height 변수 지정
         let (width, height) = UIFunc.getPos(view: self.mainView)
+        
+        self.waitingPeopleView = UIFunc.view(x: 0, y: height * 0.65, width: width, height: height * 0.35)
+        let (waitWidth, waitHeight) = UIFunc.getPos(view: waitingPeopleView)
+        self.waitingPeopleCollection.backgroundColor = UIColor(rgb: 0xffffff)
+        self.waitingPeopleCollection.dataSource = self
+        self.waitingPeopleCollection.delegate = self
+        
         //뷰 생성및 위치설정
         self.timeLbl = UIFunc.lbl(x: width * 0.3, y: height * 0.05, width: width * 0.4, height: height * 0.1, text: "10:00")
         self.departmentCountCollection = UIFunc.collection(x: width * 0.2, y: height * 0.15, width: width * 0.6, height: height * 0.1, cell: DepartmentCountCollectionViewCell.self, reuseIdentifier: "departmentCountCell")
@@ -49,7 +70,7 @@ class EnterDepartmentViewController: UIViewController {
         self.memberImgviewFourth = UIFunc.imgView(x: memberEachWidth * 0.1, y: memberEachHeight * 0.05, width: memberEachWidth * 0.8, height: memberEachHeight * 0.6, img: #imageLiteral(resourceName: "card_picture"))
         self.memberImgviewFifth = UIFunc.imgView(x: memberEachWidth * 0.1, y: memberEachHeight * 0.05, width: memberEachWidth * 0.8, height: memberEachHeight * 0.6, img: #imageLiteral(resourceName: "card_picture"))
         //뷰 세부설정
-        self.mainView.backgroundColor = UIColor(rgb: 0xffefcc)
+        self.mainView.backgroundColor = self.view.backgroundColor
         self.timeLbl.textAlignment = .center
         self.timeLbl.font = UIFont(name: "NanumSquareRoundL", size: 40)
         self.departmentCountCollection.backgroundColor = UIColor(rgb: 0xffefcc)
@@ -70,6 +91,7 @@ class EnterDepartmentViewController: UIViewController {
         self.memberViewFifth.backgroundColor = UIColor(rgb: 0xffffff)
         self.memberViewFifth.layer.cornerRadius = 5.0
         self.memberViewFifth.dropShadow(color: UIColor.black, opacity: 0.3, offSet: CGSize(width: 0, height: 0), radius: 2, scale: true)
+        
         //뷰 add
         self.mainView.addSubview(timeLbl)
         self.mainView.addSubview(departmentCountCollection)
@@ -84,10 +106,29 @@ class EnterDepartmentViewController: UIViewController {
         self.memberViewThird.addSubview(memberImgviewThird)
         self.memberViewFourth.addSubview(memberImgviewFourth)
         self.memberViewFifth.addSubview(memberImgviewFifth)
+        
+        self.mainView.addSubview(self.waitingPeopleView)
+
+        self.waitingPeopleView.addSubview(self.waitingPeopleCollection)
+
     }
     func setup() {
         setupUI()
+        API.Game.fetch_userlist_inroom(withToken: current_token) { (response, status) in
+            guard status != 401 else {
+                self.show_alert(with: "오류 발생")
+                print("Can't find user!")
+                return
+            }
+            self.setusersinroom(with:response)
+        }
     }
+    
+    func setusersinroom(with:[LightUser]) {
+        self.usersinroom = with
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,15 +141,6 @@ class EnterDepartmentViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 

@@ -68,13 +68,14 @@ class EmployCardViewController: UIViewController {
     
     @objc func login(_ sender: UIButton) {
         print(self.employNameTxtfield2.text ?? "")
-        API.User.fetch(withToken: self.employNameTxtfield2.text ?? "") { (response,status) in
+        API.User.fetch_user(withToken: self.employNameTxtfield2.text ?? "") { (response,status) in
             guard let user = response,status != 401 else {
+                self.show_alert(with: "유저를 찾을 수 없습니다.")
                 print("Can't find user!")
                 return
             }
             print(self.employNameTxtfield2.text ?? "")
-            API.User.setCurrentUser(withUser: user)
+            API.User.setCurrentUser(with: user)
             self.goto(VC: CardCheckViewController())
         }
     }

@@ -18,6 +18,25 @@ extension UIColor {
         self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
     }
     
+    convenience init(hex: String) {
+        let scanner = Scanner(string: hex)
+        scanner.scanLocation = 0
+        
+        var rgbValue: UInt64 = 0
+        
+        scanner.scanHexInt64(&rgbValue)
+        
+        let r = (rgbValue & 0xff0000) >> 16
+        let g = (rgbValue & 0xff00) >> 8
+        let b = rgbValue & 0xff
+        
+        self.init(
+            red: CGFloat(r) / 0xff,
+            green: CGFloat(g) / 0xff,
+            blue: CGFloat(b) / 0xff, alpha: 1
+        )
+    }
+    
     convenience init(rgb: Int) {
         self.init(
             red: (rgb >> 16) & 0xFF,
@@ -25,4 +44,28 @@ extension UIColor {
             blue: rgb & 0xFF
         )
     }
+    
+    static func getColor(with:String) -> UIColor {
+        switch with {
+        case "인사":
+            return UIColor.yellow_
+        case "영업":
+            return UIColor.red_
+        case "생산":
+            return UIColor.blue_
+        default:
+            return yellow
+        }
+    }
+    
+    class var yellow_: UIColor {
+        return UIColor(hex: "fff0c9")
+    }
+    class var red_: UIColor{
+        return UIColor(hex: "ffb5b6")
+    }
+    class var blue_: UIColor {
+        return UIColor(hex: "dce6ff")
+    }
+    
 }

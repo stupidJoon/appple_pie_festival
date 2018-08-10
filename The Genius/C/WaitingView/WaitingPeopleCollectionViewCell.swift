@@ -13,6 +13,8 @@ class WaitingPeopleCollectionViewCell: UICollectionViewCell {
     var imgView: UIImageView!
     var textLbl: UILabel!
     
+    
+    
     func setupUI() {
         //mainView 설정
         self.mainView = UIFunc.view(x: 0, y: 0, width: self.frame.width, height: self.frame.height)

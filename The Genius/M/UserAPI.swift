@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 class UserAPI {
-    func fetch(withToken:String,completion:@escaping(User?,Int) -> Void) {
+    func fetch_user(withToken:String,completion:@escaping(User?,Int) -> Void) {
         Alamofire.request("\(API.base_url)/game/data/\(withToken)")
             .responseJSON(completionHandler: { (response) in
                 
@@ -27,8 +27,8 @@ class UserAPI {
             })
     }
     
-    func setCurrentUser(withUser: User) {
-        API.currentUser = withUser
+    func setCurrentUser(with: User) {
+        API.currentUser = with
     }
     
     func fetch_userlist(withToken:String,completion:@escaping([LightUser],Int) -> Void) {
@@ -46,4 +46,6 @@ class UserAPI {
                 }
             })
     }
+    
+    
 }
