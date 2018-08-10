@@ -14,6 +14,7 @@
 		2D308A1C2112F6050037C972 /* NanumSquareRoundL.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D308A1B2112F6050037C972 /* NanumSquareRoundL.ttf */; };
 		2D308A202113150D0037C972 /* WaitingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D308A1F2113150D0037C972 /* WaitingViewController.swift */; };
 		2D308A2221131C550037C972 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D308A2121131C550037C972 /* MainViewController.swift */; };
+		2D7EDBA3211D6374002F8BF3 /* MemberCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7EDBA2211D6374002F8BF3 /* MemberCollectionViewCell.swift */; };
 		2D903E672111682900A6366F /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D903E662111682900A6366F /* UIColorExtension.swift */; };
 		2D97D3C921100647000E58EB /* EmployCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D97D3C821100647000E58EB /* EmployCardViewController.swift */; };
 		2D97D3CD211006A5000E58EB /* UIFunc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D97D3CC211006A5000E58EB /* UIFunc.swift */; };
@@ -43,6 +44,7 @@
 		2D308A1B2112F6050037C972 /* NanumSquareRoundL.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = NanumSquareRoundL.ttf; sourceTree = "<group>"; };
 		2D308A1F2113150D0037C972 /* WaitingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingViewController.swift; sourceTree = "<group>"; };
 		2D308A2121131C550037C972 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		2D7EDBA2211D6374002F8BF3 /* MemberCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCollectionViewCell.swift; sourceTree = "<group>"; };
 		2D903E662111682900A6366F /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		2D97D3C821100647000E58EB /* EmployCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployCardViewController.swift; sourceTree = "<group>"; };
 		2D97D3CC211006A5000E58EB /* UIFunc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFunc.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			children = (
 				2DB7238E21174ADE006A1433 /* EnterDepartmentViewController.swift */,
 				2DB723902117E308006A1433 /* DepartmentCountCollectionViewCell.swift */,
+				2D7EDBA2211D6374002F8BF3 /* MemberCollectionViewCell.swift */,
 			);
 			path = EnterDepartment;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				2D903E672111682900A6366F /* UIColorExtension.swift in Sources */,
 				2D97D3C921100647000E58EB /* EmployCardViewController.swift in Sources */,
 				2DB723912117E308006A1433 /* DepartmentCountCollectionViewCell.swift in Sources */,
+				2D7EDBA3211D6374002F8BF3 /* MemberCollectionViewCell.swift in Sources */,
 				78E9A844211B40DF006AB441 /* LightUser.swift in Sources */,
 				2DB72380211556E4006A1433 /* WaitingPeopleCollectionViewCell.swift in Sources */,
 				78ABC5132119C487009D44A4 /* UserAPI.swift in Sources */,

@@ -13,7 +13,7 @@ class EmployCardViewController: UIViewController {
     var cardView: UIView!
     var employLbl: UILabel!
     var employImgview: UIImageView!
-    var employNameTxtfield2: UITextField!
+    var employNameTxtfield: UITextField!
     var employNameTxtfieldLine: UIView!
     var nextBtn: UIButton!
     
@@ -28,7 +28,7 @@ class EmployCardViewController: UIViewController {
         let (cardWidth, cardHeight) = UIFunc.getPos(view: self.cardView) // 카드뷰 변수 지정
         self.employLbl = UIFunc.lbl(x: cardWidth * 0.3, y: cardHeight * 0.1, width: cardWidth * 0.4, height: cardHeight * 0.1, text: "사원증")
         self.employImgview = UIFunc.imgView(x: cardWidth * 0.275, y: cardHeight * 0.3, width: cardWidth * 0.45, height: cardHeight * 0.4, img: #imageLiteral(resourceName: "square_choose_a_picture"))
-        self.employNameTxtfield2 = UIFunc.txtField(x: cardWidth * 0.2, y: cardHeight * 0.8, width: cardWidth * 0.6, height: cardHeight * 0.1, placeHolder: "이름을 입력하세요")
+        self.employNameTxtfield = UIFunc.txtField(x: cardWidth * 0.2, y: cardHeight * 0.8, width: cardWidth * 0.6, height: cardHeight * 0.1, placeHolder: "이름을 입력하세요")
         self.employNameTxtfieldLine = UIFunc.view(x: cardWidth * 0.2, y: cardHeight * 0.9 - 5, width: cardWidth * 0.6, height: 1.0)
         //뷰 세부설정
         self.view.backgroundColor = UIColor(rgb: 0xe6e6e6)
@@ -38,6 +38,7 @@ class EmployCardViewController: UIViewController {
         self.employLbl.textAlignment = NSTextAlignment.center
         self.employLbl.font = UIFont(name: "NanumSquareRoundL", size: 32)
         self.employImgview.contentMode = .scaleAspectFit
+        self.employNameTxtfield.delegate = self
         self.employNameTxtfieldLine.backgroundColor = UIColor(rgb: 0x000000)
         self.nextBtn.backgroundColor = UIColor(rgb: 0x8e8e8e)
         self.nextBtn.layer.cornerRadius = self.nextBtn.frame.height * 0.5
@@ -51,7 +52,7 @@ class EmployCardViewController: UIViewController {
         self.mainView.addSubview(cardView)
         self.cardView.addSubview(employLbl)
         self.cardView.addSubview(employImgview)
-        self.cardView.addSubview(employNameTxtfield2)
+        self.cardView.addSubview(employNameTxtfield)
         self.cardView.addSubview(employNameTxtfieldLine)
         self.mainView.addSubview(nextBtn)
     }
@@ -67,13 +68,13 @@ class EmployCardViewController: UIViewController {
     }
     
     @objc func login(_ sender: UIButton) {
-        print(self.employNameTxtfield2.text ?? "")
-        API.User.fetch(withToken: self.employNameTxtfield2.text ?? "") { (response,status) in
+        print(self.employNameTxtfield.text ?? "")
+        API.User.fetch(withToken: self.employNameTxtfield.text ?? "") { (response,status) in
             guard let user = response,status != 401 else {
                 print("Can't find user!")
                 return
             }
-            print(self.employNameTxtfield2.text ?? "")
+            print(self.employNameTxtfield.text ?? "")
             API.User.setCurrentUser(withUser: user)
             self.goto(VC: CardCheckViewController())
         }
@@ -115,5 +116,13 @@ extension EmployCardViewController {
             let keyboardHeight = keyboardSize.height
             self.mainView.contentSize = CGSize(width: mainView.frame.width, height: mainView.frame.height - keyboardHeight)
         }
+    }
+}
+
+extension EmployCardViewController: UITextFieldDelegate {
+    //return키 눌렀을때 동작
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.mainView.endEditing(true)
+        return false
     }
 }

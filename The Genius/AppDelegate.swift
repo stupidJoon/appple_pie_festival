@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.backgroundColor = .white
         self.window?.makeKeyAndVisible()
-        self.window?.rootViewController = EmployCardViewController()
+        self.window?.rootViewController = EnterDepartmentViewController()
         return true
     }
     
