@@ -28,5 +28,17 @@ extension LightUser {
         
         return lightuser
     }
+    
+    static func transformUser_inroom(temp:JSON) -> [LightUser] {
+        let json = temp["data"]["user_list"].arrayValue
+        
+        //아름다운 코드 ㅎㅎ
+        let lightuser:[LightUser] = json.map{LightUser(user_token: $0["user_token"].stringValue,
+                                                       user_name: $0["user_name"].stringValue,
+                                                       user_profile: $0["user_profile"].stringValue)}
+        
+        
+        return lightuser
+    }
 }
 

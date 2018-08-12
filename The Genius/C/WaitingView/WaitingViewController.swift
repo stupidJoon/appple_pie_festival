@@ -12,11 +12,14 @@ class WaitingViewController: UIViewController {
     var mainView: UIView!
     var moveDepartmentView: UIView!
     var moveDepartmentBtn: UIButton!
+    
+    //이건 계속해서 쓰이니까 아예 코드 파일을 하나 더 만들어서 그 안에 init으로 다 넣어준 다음에 뷰마다 재사용하는게 맞음 ㅠㅠ
     var waitingPeopleView: UIView!
     var waitingPeopleCollection: UICollectionView!
     
-    var users:[LightUser] = []
-    
+    var users:[LightUser] {
+        return API.otherUsers
+    }
     
     func setupUI() {
         
@@ -29,7 +32,11 @@ class WaitingViewController: UIViewController {
         self.waitingPeopleView = UIFunc.view(x: 0, y: height * 0.65, width: width, height: height * 0.35)
         let (moveWidth, moveHeight) = UIFunc.getPos(view: moveDepartmentView)
         let (waitWidth, waitHeight) = UIFunc.getPos(view: waitingPeopleView)
+        
         self.moveDepartmentBtn = UIFunc.btn(x: (moveWidth - moveHeight * 0.5) / 2, y: moveHeight * 0.25, width: moveHeight * 0.5, height: moveHeight * 0.5, title: "부서이동")
+        moveDepartmentBtn.addTarget(self, action: #selector(moveDepartmentBtnPressed(sender:)), for: .touchUpInside)
+        
+        
         self.waitingPeopleCollection = UIFunc.collection(x: waitWidth * 0.05, y: waitWidth * 0.05, width: waitWidth * 0.9, height: waitHeight - waitWidth * 0.1, cell: WaitingPeopleCollectionViewCell.self, reuseIdentifier: "waitingCell")
         //뷰 세부설정
         self.view.backgroundColor = UIColor(rgb: 0xe6e6e6)
@@ -47,20 +54,21 @@ class WaitingViewController: UIViewController {
         self.moveDepartmentView.addSubview(self.moveDepartmentBtn)
         self.waitingPeopleView.addSubview(self.waitingPeopleCollection)
     }
+    
     func setup() {
         setupUI()
         
-        API.User.fetch_userlist(withToken: (API.currentUser?.user_token)!, completion: { (response,status) in
+        API.User.fetch_userlist(withToken: current_token, completion: { (response,status) in
             guard status != 401 else {
                 print("Error!")
                 return
             }
-            self.setUsers(temp: response)
+            self.set_otherUsers(with: response)
         })
     }
     
-    func setUsers(temp:[LightUser]) {
-        users = temp
+    func set_otherUsers(with:[LightUser]) {
+        API.otherUsers = with
         waitingPeopleCollection.reloadData()
     }
 
@@ -68,11 +76,25 @@ class WaitingViewController: UIViewController {
         super.viewDidLoad()
         setup()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    @objc func moveDepartmentBtnPressed(sender:UIButton!) {
+        API.Game.fetch_isGameStarted(withToken: current_token) { (start, status) in
+            if status == 401 {
+                print("token error")
+                return
+            }
+            //게임 ㅅ
+            if start == true {
+                self.move_department()
+            } else {
+                self.show_alert(with: "시작할 수 없습니다.")
+            }
+        }
     }
     
+    func move_department() {
+        self.goto(VC: MoveDepartmentViewController())
+    }
 
 }
 

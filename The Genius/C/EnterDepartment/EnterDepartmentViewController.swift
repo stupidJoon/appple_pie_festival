@@ -18,8 +18,7 @@ class EnterDepartmentViewController: UIViewController {
     var enterDepartmentPeopleCollection: UICollectionView!
     
     func setupUI() {
-        //mainView 설정
-        self.mainView = UIFunc.view(x: 0, y: UIApplication.shared.statusBarFrame.height + (self.navigationController?.navigationBar.frame.height ?? 0), width: self.view.frame.width, height: self.view.frame.height - (UIApplication.shared.statusBarFrame.height + (self.navigationController?.navigationBar.frame.height ?? 0)))
+       self.mainView = UIFunc.view(x: 0, y: UIApplication.shared.statusBarFrame.height + (self.navigationController?.navigationBar.frame.height ?? 0), width: self.view.frame.width, height: self.view.frame.height - (UIApplication.shared.statusBarFrame.height + (self.navigationController?.navigationBar.frame.height ?? 0)))
         self.view.backgroundColor = UIColor(rgb: 0xffefcc)
         self.view.addSubview(mainView)
         //뷰 width, height 변수 지정
@@ -62,7 +61,21 @@ class EnterDepartmentViewController: UIViewController {
     }
     func setup() {
         setupUI()
+        API.Game.fetch_userlist_inroom(withToken: current_token) { (response, status) in
+            guard status != 401 else {
+                self.show_alert(with: "오류 발생")
+                print("Can't find user!")
+                return
+            }
+            self.setusersinroom(with:response)
+        }
     }
+    
+    func setusersinroom(with:[LightUser]) {
+        self.usersinroom = with
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,17 +86,6 @@ class EnterDepartmentViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
 }
 
 extension EnterDepartmentViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
